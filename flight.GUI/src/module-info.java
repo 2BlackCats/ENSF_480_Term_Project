@@ -45,6 +45,7 @@ module flight.GUI {
 	requires java.sql;
 >>>>>>> main
 =======
+<<<<<<< HEAD
 /**
  * 
  */
@@ -54,5 +55,16 @@ module flight.GUI {
 module flight.GUI {
 	requires java.desktop;
 	requires java.sql;
+=======
+/**
+ * 
+ */
+/**
+ * 
+ */
+module flight.GUI {
+	requires java.desktop;
+	requires java.sql;
+>>>>>>> main
 >>>>>>> main
 }
