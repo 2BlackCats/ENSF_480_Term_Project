@@ -1,94 +1,123 @@
 package flight.GUI;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPasswordField;
+import javax.swing.SwingConstants;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
-public class Login {
+public class Login extends JPanel{
 
-	private JFrame frame;
+	private JFrame main;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login window = new Login();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
 	 */
-	public Login() {
-		initialize();
-	}
+	public Login(JFrame main) {
+		this.main = main;
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame("Login");
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{32, 96, 113, 48, 57, 0};
+		gridBagLayout.rowHeights = new int[]{21, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
 		
-		usernameField = new JTextField();
-		usernameField.setBounds(190, 90, 170, 19);
-		frame.getContentPane().add(usernameField);
-		usernameField.setColumns(10);
+		JLabel lblNewLabel_2 = new JLabel("Login Page");
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.gridx = 2;
+		gbc_lblNewLabel_2.gridy = 1;
+		add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		JLabel lblNewLabel = new JLabel("Username:");
-		lblNewLabel.setBounds(72, 90, 63, 19);
-		frame.getContentPane().add(lblNewLabel);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.weightx = gbc_lblNewLabel.weighty = 1.0;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 1;
+		gbc_lblNewLabel.gridy = 2;
+		add(lblNewLabel, gbc_lblNewLabel);
+		
+		usernameField = new JTextField();
+		GridBagConstraints gbc_usernameField = new GridBagConstraints();
+		gbc_usernameField.gridwidth = 2;
+		gbc_usernameField.insets = new Insets(0, 0, 5, 5);
+		gbc_usernameField.gridx = 2;
+		gbc_usernameField.gridy = 2;
+		add(usernameField, gbc_usernameField);
+		usernameField.setColumns(20);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password:");
-		lblNewLabel_1.setBounds(74, 139, 61, 13);
-		frame.getContentPane().add(lblNewLabel_1);
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.weightx = gbc_lblNewLabel_1.weighty = 1.0;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 1;
+		gbc_lblNewLabel_1.gridy = 4;
+		add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		passwordField = new JPasswordField();
+		GridBagConstraints gbc_passwordField = new GridBagConstraints();
+		gbc_passwordField.gridwidth = 2;
+		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordField.gridx = 2;
+		gbc_passwordField.gridy = 4;
+		add(passwordField, gbc_passwordField);
+		passwordField.setColumns(20);
 		
 		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(22, 205, 124, 21);
-		frame.getContentPane().add(btnNewButton);
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.weightx = gbc_btnNewButton.weighty = 1.0;
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.gridx = 1;
+		gbc_btnNewButton.gridy = 6;
+		add(btnNewButton, gbc_btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent E) {
-				
+				main.setContentPane(new Customer(main, usernameField.getText()));
+				main.revalidate();
 			}
 		});
 		
 		JButton btnNewButton_1 = new JButton("Create Account");
-		btnNewButton_1.setBounds(156, 205, 124, 21);
-		frame.getContentPane().add(btnNewButton_1);
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.weightx = gbc_btnNewButton_1.weighty = 1.0;
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_1.gridx = 2;
+		gbc_btnNewButton_1.gridy = 6;
+		add(btnNewButton_1, gbc_btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent E) {
-				new Create();
+				main.setContentPane(new Create(main));
+				main.revalidate();
 			}
 		});
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(190, 136, 170, 19);
-		frame.getContentPane().add(passwordField);
-		
 		JButton btnNewButton_2 = new JButton("Guest");
-		btnNewButton_2.setBounds(295, 205, 124, 21);
-		frame.getContentPane().add(btnNewButton_2);
+		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+		gbc_btnNewButton_2.weightx = gbc_btnNewButton_2.weighty = 1.0;
+		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_2.gridx = 3;
+		gbc_btnNewButton_2.gridy = 6;
+		add(btnNewButton_2, gbc_btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent E) {
-				new Create();
+				main.setContentPane(new Customer(main, "guest"));
+				main.revalidate();
 			}
 		});
 	}
