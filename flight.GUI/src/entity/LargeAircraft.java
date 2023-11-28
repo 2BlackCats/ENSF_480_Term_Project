@@ -2,7 +2,8 @@ package entity;
 
 public class LargeAircraft extends Aircraft{
 	
-	public LargeAircraft() {
+	public LargeAircraft(int id) {
+		this.id = id;
 		size = "Large";
 		seatMap = new Seat[3][5];
 		for (int i = 0; i < seatMap.length; i++) {

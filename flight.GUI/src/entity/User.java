@@ -4,11 +4,13 @@ public class User {
 	private String username;
 	private String password;
 	private String email;
+	private String priviledge;
 	
-	public User(String username, String password, String email) {
+	public User(String username, String password, String email, String priviledge) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.priviledge = priviledge;
 	}
 	
 	public String getUsername() {
@@ -32,6 +34,20 @@ public class User {
 	}
 	
 	public void changeEmail(String newEmail) {
-		this.username = newEmail;
+		this.email = newEmail;
+	}
+	
+	public String getPriviledge() {
+		return priviledge;
+	}
+	
+	public void changePriviledge(String newPriviledge) {
+		this.priviledge = newPriviledge;
+	}
+	
+	public void sendEmail(String msg) {
+		
+		//Send msg here////////////////////////////////////////
+		
 	}
 }

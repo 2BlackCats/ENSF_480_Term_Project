@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class SystemAdmin extends AirlineAgent{
 	
-	public SystemAdmin(String username, String password, String email) {
-		super(username, password, email);
+	public SystemAdmin(String username, String password, String email, String priviledge) {
+		super(username, password, email, priviledge);
 	}
 	
 	public ArrayList<User> getUsers(){
