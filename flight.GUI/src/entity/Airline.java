@@ -82,6 +82,19 @@ public class Airline {
 	public void addUser(String username, String password, String email, String priviledge) {
 		listOfUsers.add(new User(username, password, email, priviledge));
 	}
+
+	public void addAgent(String username, String password, String email, String priviledge) {
+		AirlineAgent agent = new AirlineAgent(username, password, email, priviledge);
+		listOfUsers.add(agent);
+		listOfAgents.add(agent);
+	}
+
+	public void addAdmin(String username, String password, String email, String priviledge){
+		SystemAdmin admin = new SystemAdmin(username, password, email, priviledge);
+		listOfUsers.add(admin);
+		listOfAgents.add(admin);
+		listOfAdmins.add(admin);
+	}
 	
 	public boolean addFlight(int id, String destination, LocalDateTime local, Aircraft plane) {
 		Flight newFlight = Flight.flightMaker(id, destination, local, plane);

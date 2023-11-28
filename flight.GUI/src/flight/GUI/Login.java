@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import entity.Airline;
+import entity.*;
 import javax.swing.JComboBox;
 
 public class Login extends JPanel{
@@ -107,24 +107,29 @@ public class Login extends JPanel{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent E) {
 				String userT = (String)comboBox.getSelectedItem();
-				String username = usernameField.getSelectedText();
+				String username = usernameField.getText();
 				String password = new String(passwordField.getPassword());
-				
-				if (userT == "Customer") {
+				System.out.println(userT);
+				System.out.println(username);
+				System.out.println(password);
+				if (username == null || password == null) {
+					return;
+				}
+				System.out.println(Airline.getAirline().verifyUser(username, password).getUsername());
+				if (userT == "Customer" && Airline.getAirline().verifyUser(username, password) != null) {
+					
 					main.setContentPane(new Customer(main, usernameField.getText(), al));
 					main.revalidate();
 				}
-				else if(userT == "Airline Agent") {
+				else if(userT == "Airline Agent" && al.verifyAgent(username, password) != null) {
 					main.setContentPane(new FlightAttendent(main, usernameField.getText(), al));
 					main.revalidate();
 				}
-				else if(userT == "System Admin") {
+				else if(userT == "System Admin" && al.verifyAdmin(username, password) != null) {
 					main.setContentPane(new SystemAdmin(main, usernameField.getText(), al));
 					main.revalidate();
 				}
 				
-				main.setContentPane(new Customer(main, usernameField.getText(), al));
-				main.revalidate();
 			}
 		});
 		

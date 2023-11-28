@@ -10,12 +10,11 @@ import java.sql.Timestamp;
 import entity.*;
 
 public class ReadDB {
-	private Airline al;
+
 	private ResultSet results;
 	private Connection dbConnect;
 	
 	public ReadDB () {
-		al = Airline.getAirline();
 		createConnection();
 		try {
 			loadFromDB();
@@ -27,9 +26,13 @@ public class ReadDB {
 		closeConnection();
 	}
 	
+	public Airline filledAirline() {
+		return Airline.getAirline();
+	}
+	
 	public void createConnection() {
 		try {
-			dbConnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+			dbConnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/air_travel", "root", "");
 		}
 		catch (SQLException e) {
 			System.out.println("Problem establishing connection");
@@ -55,10 +58,18 @@ public class ReadDB {
 	
 	public void populateUsers() throws SQLException {
 		Statement st = dbConnect.createStatement();
-		String query = "select * from Login where Type = 'User'";
+		String query = "SELECT * FROM air_travel.login;";
 		results = st.executeQuery(query);
 		while(results.next()){
-			al.addUser(results.getString("Username"), results.getString("Password"), results.getString("Email"), results.getString("Type"));
+			if (results.getString("Type") == "Memeber") {
+				Airline.getAirline().addUser(results.getString("Username"), results.getString("Password"), results.getString("Email"), results.getString("Type"));
+			}
+			else if (results.getString("Type") == "Agent") {
+				Airline.getAirline().addAgent(results.getString("Username"), results.getString("Password"), results.getString("Email"), results.getString("Type"));
+			}
+			else if (results.getString("Type") == "Admin") {
+				Airline.getAirline().addAdmin(results.getString("Username"), results.getString("Password"), results.getString("Email"), results.getString("Type"));
+			}
 		}
 		
 	}
@@ -68,7 +79,7 @@ public class ReadDB {
 		String query = "select * from Aircrafts";
 		results = st.executeQuery(query);
 		while (results.next()) {
-			al.addAircraft(results.getString("Size"), results.getInt("ID"));
+			Airline.getAirline().addAircraft(results.getString("Size"), results.getInt("ID"));
 			
 		}
 		
@@ -80,8 +91,8 @@ public class ReadDB {
 		results = st.executeQuery(query);
 
 		while(results.next()){
-			for(int i =0; i < al.getListOfAircrafts().size(); i++){
-				al.addFlight(results.getInt("ID"),results.getString("Destination"), results.getTimestamp("Time").toLocalDateTime(), al.getListOfAircrafts().get(i));
+			for(int i =0; i < Airline.getAirline().getListOfAircrafts().size(); i++){
+				Airline.getAirline().addFlight(results.getInt("ID"),results.getString("Destination"), results.getTimestamp("Time").toLocalDateTime(), Airline.getAirline().getListOfAircrafts().get(i));
 			}
 			
 		}

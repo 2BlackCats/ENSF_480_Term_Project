@@ -32,7 +32,7 @@ public class UpdateDB {
 	
 	public void createConnection() {
 		try {
-			dbConnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
+			dbConnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/air_travel", "root", "");
 		}
 		catch (SQLException e) {
 			System.out.println("Problem establishing connection");

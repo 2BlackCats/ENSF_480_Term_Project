@@ -22,7 +22,8 @@ public class Frame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new ReadDB();
+					ReadDB db = new ReadDB();
+					al = db.filledAirline();
 					Frame frame = new Frame();
 					frame.setVisible(true);
 				} catch (Exception e) {
