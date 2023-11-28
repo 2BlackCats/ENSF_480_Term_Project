@@ -104,15 +104,24 @@ public class ReadDB {
 	}
 	
 	public void populateSeats(int AircraftID) throws SQLException {
-		Statement st = dbConnect.createStatement();
-		String query = "select * from Seats";
-		results = st.executeQuery(query);
+		for(int i =0; i < al.getListOfAircrafts().size(); i++){
 
-		while(results.next()){
-		
+			if(al.getListOfAircrafts().get(i).getID() == AircraftID){
+				
+				Statement st = dbConnect.createStatement();
+				String query = "select * from Seats where 'Passenger_name' != null AND Aircraft_ID = " + String.valueOf(AircraftID);		
+				results = st.executeQuery(query);
+				
+				while(results.next()){
+					String customer = results.getString("Passenger_Name");
+					for(User checkUser : al.getListOfUsers()) {
+						if (checkUser.getUsername() == customer) {
+							al.getListOfAircrafts().get(i).reserveSeat(results.getInt("Seat_Row"), results.getInt("Seat_Column"), checkUser);
+						}
+					}
+				}
+			}	
 		}
-		
-		
 	}
 	
 	

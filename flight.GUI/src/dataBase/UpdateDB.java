@@ -9,6 +9,7 @@ import java.sql.Statement;
 
 
 import entity.Airline;
+import entity.Seat;
 
 public class UpdateDB {
 	
@@ -32,7 +33,7 @@ public class UpdateDB {
 	
 	public void createConnection() {
 		try {
-			dbConnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/air_travel", "root", "");
+			dbConnect = DriverManager.getConnection("jdbc:mysql://localhost:3306/ams", "root", "");
 		}
 		catch (SQLException e) {
 			System.out.println("Problem establishing connection");
@@ -54,6 +55,7 @@ public class UpdateDB {
 		updateUsers();
 		updateFlights();
 		updateAircrafts();
+		updateSeats();
 	}
 	
 	public void updateUsers() throws SQLException {
@@ -84,6 +86,7 @@ public class UpdateDB {
 			ps.setInt(1, al.getListOfFlights().get(i).getID());
 			ps.setString(2, al.getListOfFlights().get(i).getDestination());
 			ps.setObject(3, al.getListOfFlights().get(i).getFlightDate());
+			ps.setInt(4,al.getListOfAircrafts().get(i).getID());
 		}
 
 		
@@ -104,7 +107,23 @@ public class UpdateDB {
 		
 	}
 	
-	public void updateSeats() {
-		
+	public void updateSeats() throws SQLException{
+		int craftCount = al.getListOfAircrafts().size();
+		for (int i = 0; i < craftCount; i++){
+			Seat[][] currSeatMap = al.getListOfAircrafts().get(i).getSeatMap();
+			if (al.getListOfAircrafts().get(i).used() == true){
+				//update
+				for (Seat[] seatRow : currSeatMap) {
+					for (Seat curSeat: seatRow) {
+						if (curSeat.reservedSeat()) {
+							String seatPassengerName = curSeat.reservedFor().getUsername();
+							String update = "UPDATE Seats SET Passenger_Name = '" + seatPassengerName + "' WHERE Aircraft_ID = " + al.getListOfAircrafts().get(i).getID();
+							Statement st= dbConnect.createStatement();
+							st.executeUpdate(update);
+						}
+					}
+				}
+			}
+		}
 	}
 }
