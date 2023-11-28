@@ -83,6 +83,10 @@ public class ReadDB {
 		Statement st = dbConnect.createStatement();
 		String query = "select * from Seats";
 		results = st.executeQuery(query);
+
+		while(results.next()){
+		
+		}
 		
 		
 	}
