@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import entity.Airline;
 
 public class Customer extends JPanel{
 
@@ -29,7 +30,7 @@ public class Customer extends JPanel{
 	/**
 	 * Create the application.
 	 */
-	public Customer(JFrame main, String user) {
+	public Customer(JFrame main, String user, Airline al) {
 		this.main = main;
 		this.user = user;
 		
@@ -73,7 +74,7 @@ public class Customer extends JPanel{
 		add(logOffButton, gbc_logOffButton);
 		logOffButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent E) {
-				main.setContentPane(new Login(main));
+				main.setContentPane(new Login(main, al));
 				main.revalidate();
 			}
 		});

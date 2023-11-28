@@ -18,6 +18,16 @@ public class UpdateDB {
 	
 	public UpdateDB () {
 		al = Airline.getAirline();
+		createConnection();
+		try {
+			update();
+		}
+		catch (SQLException e) {
+			System.out.println("Problem updating db");
+            e.printStackTrace();
+		}
+		closeConnection();
+		
 	}
 	
 	public void createConnection() {
@@ -40,8 +50,10 @@ public class UpdateDB {
         }
 	}
 	
-	public void loadFromDB() {
-
+	public void update() throws SQLException{
+		updateUsers();
+		updateFlights();
+		updateAircrafts();
 	}
 	
 	public void updateUsers() throws SQLException {

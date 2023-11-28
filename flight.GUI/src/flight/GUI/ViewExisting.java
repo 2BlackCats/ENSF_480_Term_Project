@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTable;
-
+import entity.Airline;
 public class ViewExisting extends JPanel {
 	private JFrame main;
 	private JTable table;
@@ -17,7 +17,7 @@ public class ViewExisting extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ViewExisting(JFrame main, String user) {
+	public ViewExisting(JFrame main, String user, Airline al) {
 		this.main = main;
 		this.user = user;
 		setLayout(new BorderLayout(0, 0));
@@ -26,7 +26,7 @@ public class ViewExisting extends JPanel {
 		add(returnButton, BorderLayout.SOUTH);
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent E) {
-				main.setContentPane(new Login(main));
+				main.setContentPane(new Login(main, al));
 				main.revalidate();
 			}
 		});

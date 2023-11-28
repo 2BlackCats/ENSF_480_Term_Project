@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
+import entity.Airline;
 
 public class Create extends JPanel{
 
@@ -24,7 +25,7 @@ public class Create extends JPanel{
 	/**
 	 * Create the application.
 	 */
-	public Create(JFrame main) {
+	public Create(JFrame main, Airline al) {
 		this.main = main;
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -104,7 +105,7 @@ public class Create extends JPanel{
 		add(btnNewButton_1, gbc_btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent E) {
-				main.setContentPane(new Login(main));
+				main.setContentPane(new Login(main, al));
 				main.revalidate();
 			}
 		});
@@ -118,7 +119,7 @@ public class Create extends JPanel{
 		add(btnNewButton, gbc_btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent E) {
-				main.setContentPane(new Login(main));
+				main.setContentPane(new Login(main, al));
 				main.revalidate();
 			}
 		});

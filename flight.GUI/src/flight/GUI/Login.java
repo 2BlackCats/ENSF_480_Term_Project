@@ -15,6 +15,8 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import entity.Airline;
+import javax.swing.JComboBox;
 
 public class Login extends JPanel{
 
@@ -27,14 +29,14 @@ public class Login extends JPanel{
 	/**
 	 * Create the application.
 	 */
-	public Login(JFrame main) {
+	public Login(JFrame main, Airline al) {
 		this.main = main;
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{32, 96, 113, 48, 57, 0};
-		gridBagLayout.rowHeights = new int[]{21, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowHeights = new int[]{21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblNewLabel_2 = new JLabel("Login Page");
@@ -79,16 +81,49 @@ public class Login extends JPanel{
 		add(passwordField, gbc_passwordField);
 		passwordField.setColumns(20);
 		
+		JLabel lblNewLabel_3 = new JLabel("User Type: ");
+		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_3.gridx = 1;
+		gbc_lblNewLabel_3.gridy = 6;
+		add(lblNewLabel_3, gbc_lblNewLabel_3);
+		
+		String [] userType = {"Customer", "Airline Agent", "System Admin"};
+		JComboBox comboBox = new JComboBox<Object>(userType);
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 2;
+		gbc_comboBox.gridy = 6;
+		add(comboBox, gbc_comboBox);
+		
 		JButton btnNewButton = new JButton("Login");
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.weightx = gbc_btnNewButton.weighty = 1.0;
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 6;
+		gbc_btnNewButton.gridy = 8;
 		add(btnNewButton, gbc_btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent E) {
-				main.setContentPane(new Customer(main, usernameField.getText()));
+				String userT = (String)comboBox.getSelectedItem();
+				String username = usernameField.getSelectedText();
+				String password = new String(passwordField.getPassword());
+				
+				if (userT == "Customer") {
+					main.setContentPane(new Customer(main, usernameField.getText(), al));
+					main.revalidate();
+				}
+				else if(userT == "Airline Agent") {
+					main.setContentPane(new FlightAttendent(main, usernameField.getText(), al));
+					main.revalidate();
+				}
+				else if(userT == "System Admin") {
+					main.setContentPane(new SystemAdmin(main, usernameField.getText(), al));
+					main.revalidate();
+				}
+				
+				main.setContentPane(new Customer(main, usernameField.getText(), al));
 				main.revalidate();
 			}
 		});
@@ -98,11 +133,11 @@ public class Login extends JPanel{
 		gbc_btnNewButton_1.weightx = gbc_btnNewButton_1.weighty = 1.0;
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_1.gridx = 2;
-		gbc_btnNewButton_1.gridy = 6;
+		gbc_btnNewButton_1.gridy = 8;
 		add(btnNewButton_1, gbc_btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent E) {
-				main.setContentPane(new Create(main));
+			public void actionPerformed(ActionEvent E) {						
+				main.setContentPane(new Create(main, al));
 				main.revalidate();
 			}
 		});
@@ -112,11 +147,11 @@ public class Login extends JPanel{
 		gbc_btnNewButton_2.weightx = gbc_btnNewButton_2.weighty = 1.0;
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_2.gridx = 3;
-		gbc_btnNewButton_2.gridy = 6;
+		gbc_btnNewButton_2.gridy = 8;
 		add(btnNewButton_2, gbc_btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent E) {
-				main.setContentPane(new Customer(main, "guest"));
+				main.setContentPane(new Customer(main, "guest", al));
 				main.revalidate();
 			}
 		});

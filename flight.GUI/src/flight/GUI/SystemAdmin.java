@@ -2,12 +2,14 @@ package flight.GUI;
 
 import java.awt.EventQueue;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import entity.Airline;
 
 public class SystemAdmin extends JPanel{
 
@@ -20,7 +22,7 @@ public class SystemAdmin extends JPanel{
 	/**
 	 * Create the application.
 	 */
-	public SystemAdmin() {
+	public SystemAdmin(JFrame main, String user, Airline al) {
 		setLayout(new BorderLayout(0, 0));
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		add(tabbedPane);

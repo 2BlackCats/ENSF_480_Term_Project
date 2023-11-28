@@ -3,13 +3,15 @@ package flight.GUI;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.JToggleButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.JButton;
+import entity.Airline;
+
 
 public class FlightAttendent extends JPanel{
 	private JButton btnNewButton;
@@ -20,7 +22,7 @@ public class FlightAttendent extends JPanel{
 	/**
 	 * Create the application.
 	 */
-	public FlightAttendent() {
+	public FlightAttendent(JFrame main, String user, Airline al) {
 		setLayout(new BorderLayout(0, 0));
 		
 		btnNewButton = new JButton("Log Off");

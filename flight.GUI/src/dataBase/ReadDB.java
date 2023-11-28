@@ -16,6 +16,15 @@ public class ReadDB {
 	
 	public ReadDB () {
 		al = Airline.getAirline();
+		createConnection();
+		try {
+			loadFromDB();
+		}
+		catch (SQLException e) {
+			System.out.println("Problem Loading from db");
+            e.printStackTrace();
+		}
+		closeConnection();
 	}
 	
 	public void createConnection() {
