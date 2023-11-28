@@ -28,8 +28,10 @@ public class Airline {
 	}
 	
 	public User verifyUser(String Username, String Password) {
+		System.out.println(listOfUsers.size());
 		for (int i = 0; i < listOfUsers.size(); i++) {
-			if(listOfUsers.get(i).getUsername() == Username && listOfUsers.get(i).getPassword() == Password) {
+			System.out.println(listOfUsers.get(i).getUsername() + "/" + listOfUsers.get(i).getPassword());
+			if(listOfUsers.get(i).getUsername().compareTo(Username) == 0 && listOfUsers.get(i).getPassword().compareTo(Password) == 0) {
 				return listOfUsers.get(i);
 			}
 		}
@@ -38,7 +40,7 @@ public class Airline {
 	
 	public User verifyAgent(String Username, String Password) {
 		for (int i = 0; i < listOfAgents.size(); i++) {
-			if(listOfAgents.get(i).getUsername() == Username && listOfAgents.get(i).getPassword() == Password) {
+			if(listOfAgents.get(i).getUsername().equals(Username) && listOfAgents.get(i).getPassword().equals(Password)) {
 				return listOfAgents.get(i);
 			}
 		}
@@ -47,7 +49,7 @@ public class Airline {
 	
 	public User verifyAdmin(String Username, String Password) {
 		for (int i = 0; i < listOfAdmins.size(); i++) {
-			if(listOfAdmins.get(i).getUsername() == Username && listOfAdmins.get(i).getPassword() == Password) {
+			if(listOfAdmins.get(i).getUsername().equals(Username) && listOfAdmins.get(i).getPassword().equals(Password)) {
 				return listOfAdmins.get(i);
 			}
 		}
