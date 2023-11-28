@@ -7,27 +7,37 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Flight {
+	private int ID;
 	private String destination;
 	private LocalDateTime flightDate;
 	private Aircraft plane;
 	
-	private Flight (String destination, int day, int month, int year, int hour, int minute, Aircraft plane) throws
+	private Flight (int ID, String destination, LocalDateTime local, Aircraft plane) throws
 	DateTimeException {
+			this.ID = ID;
 			this.destination = destination;
-			this.flightDate = LocalDateTime.of(year, month, day, hour, minute);
+			this.flightDate = local;
 			this.plane = plane;
 			plane.changeUsed();
 	}
 	
-	static public Flight flightMaker(String destination, int day, int month, int year, int hour, int minute, Aircraft plane) {
+	static public Flight flightMaker(int id, String destination, LocalDateTime local, Aircraft plane) {
 		Flight f;
 		try {
-			f = new Flight(destination, day, month, year, hour, minute, plane);
+			f = new Flight(id,destination, local, plane);
 		}
 		catch (Exception DateTimeException) {
 			return null;
 		}
 		return f;
+	}
+
+	public int getID(){
+		return ID;
+	}
+
+	public void setID(int id){
+		this.ID = id;
 	}
 	
 	public String getDestination() {
@@ -42,8 +52,8 @@ public class Flight {
 		return flightDate;
 	}
 	
-	public void setFlightDate(int day, int month, int year, int hour, int minute) {
-		this.flightDate = LocalDateTime.of(year, month, day, hour, minute);
+	public void setFlightDate(LocalDateTime local) {
+		this.flightDate = local;
 	}
 	
 	public Aircraft getPlane() {

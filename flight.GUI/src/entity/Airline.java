@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class Airline {
 	private ArrayList<User> listOfUsers;
@@ -82,8 +83,8 @@ public class Airline {
 		listOfUsers.add(new User(username, password, email, priviledge));
 	}
 	
-	public boolean addFlight(String destination, int day, int month, int year, int hour, int minute, Aircraft plane) {
-		Flight newFlight = Flight.flightMaker(destination, day, month, year, hour, minute, plane);
+	public boolean addFlight(int id, String destination, LocalDateTime local, Aircraft plane) {
+		Flight newFlight = Flight.flightMaker(id, destination, local, plane);
 		if (newFlight == null) {
 			return false;
 		}
