@@ -61,13 +61,17 @@ public class ReadDB {
 		String query = "SELECT * FROM air_travel.login;";
 		results = st.executeQuery(query);
 		while(results.next()){
-			if (results.getString("Type") == "Memeber") {
+			
+			if (results.getString("Type").compareTo("Member") == 0) {
+				
 				Airline.getAirline().addUser(results.getString("Username"), results.getString("Password"), results.getString("Email"), results.getString("Type"));
 			}
-			else if (results.getString("Type") == "Agent") {
+			else if (results.getString("Type").compareTo("Agent") == 0) {
+				
 				Airline.getAirline().addAgent(results.getString("Username"), results.getString("Password"), results.getString("Email"), results.getString("Type"));
 			}
-			else if (results.getString("Type") == "Admin") {
+			else if (results.getString("Type").compareTo("Admin") == 0) {
+				
 				Airline.getAirline().addAdmin(results.getString("Username"), results.getString("Password"), results.getString("Email"), results.getString("Type"));
 			}
 		}

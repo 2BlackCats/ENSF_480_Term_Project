@@ -88,7 +88,7 @@ public class Login extends JPanel{
 		gbc_lblNewLabel_3.gridy = 6;
 		add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
-		String [] userType = {"Customer", "Airline Agent", "System Admin"};
+		String [] userType = {"Member", "Airline Agent", "System Admin"};
 		JComboBox comboBox = new JComboBox<Object>(userType);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -109,23 +109,20 @@ public class Login extends JPanel{
 				String userT = (String)comboBox.getSelectedItem();
 				String username = usernameField.getText();
 				String password = new String(passwordField.getPassword());
-				System.out.println(userT);
-				System.out.println(username);
-				System.out.println(password);
-				if (username == null || password == null) {
+
+				if (username.equals(null) || password.equals(null) || Airline.getAirline().verifyUser(username, password) == null) {
 					return;
 				}
-				System.out.println(Airline.getAirline().verifyUser(username, password).getUsername());
-				if (userT == "Customer" && Airline.getAirline().verifyUser(username, password) != null) {
+				if (userT.equals("Member") && Airline.getAirline().verifyUser(username, password) != null) {
 					
 					main.setContentPane(new Customer(main, usernameField.getText(), al));
 					main.revalidate();
 				}
-				else if(userT == "Airline Agent" && al.verifyAgent(username, password) != null) {
+				else if(userT.equals("Airline Agent") && al.verifyAgent(username, password) != null) {
 					main.setContentPane(new FlightAttendent(main, usernameField.getText(), al));
 					main.revalidate();
 				}
-				else if(userT == "System Admin" && al.verifyAdmin(username, password) != null) {
+				else if(userT.equals("System Admin") && al.verifyAdmin(username, password) != null) {
 					main.setContentPane(new SystemAdmin(main, usernameField.getText(), al));
 					main.revalidate();
 				}
