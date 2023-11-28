@@ -1,0 +1,16 @@
+package entity;
+
+public abstract class Aircraft {
+	private int id;
+	private String size;
+	protected Seat[][] seatMap;
+	
+	public Seat[][] getSeatMap(){
+		return seatMap;
+	}
+	
+	public int getID() {
+		return id;
+	}
+	
+}

@@ -1,0 +1,31 @@
+package dataBase;
+
+import entity.*;
+
+public class ReadDB {
+	private Airline al;
+	
+	public ReadDB () {
+		al = Airline.getAirline();
+	}
+	
+	public void loadFromDB() {
+		populateUsers();
+		populateAircrafts();
+		populateFlights();
+	}
+	
+	public void populateUsers() {
+		
+	}
+	
+	public void populateAircrafts() {
+		
+	}
+	
+	public void populateFlights() {
+		
+	}
+	
+	
+}

@@ -1,0 +1,34 @@
+package flight.GUI;
+
+import java.awt.EventQueue;
+
+import javax.swing.JPanel;
+import java.awt.CardLayout;
+import javax.swing.JTabbedPane;
+import java.awt.BorderLayout;
+import javax.swing.JTable;
+
+public class SystemAdmin extends JPanel{
+
+	private JTable table;
+	private JTable table_1;
+	private JTable table_2;
+
+
+	/**
+	 * Create the application.
+	 */
+	public SystemAdmin() {
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		add(tabbedPane);
+		
+		table = new JTable();
+		tabbedPane.addTab("Flights", null, table, null);
+		
+		table_1 = new JTable();
+		tabbedPane.addTab("Aircrafts", null, table_1, null);
+		
+		table_2 = new JTable();
+		tabbedPane.addTab("Users", null, table_2, null);
+	}
+}

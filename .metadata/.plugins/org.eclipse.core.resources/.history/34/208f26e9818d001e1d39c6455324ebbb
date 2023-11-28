@@ -1,0 +1,10 @@
+package entity;
+
+import java.util.ArrayList;
+
+public class SystemAdmin extends AirlineAgent{
+	
+	public SystemAdmin (String username, String password, String email) {
+		
+	}
+}

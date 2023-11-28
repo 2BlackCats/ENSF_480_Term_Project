@@ -1,0 +1,16 @@
+package flight.GUI;
+
+import javax.swing.JPanel;
+
+public class ViewExisting extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Create the panel.
+	 */
+	public ViewExisting() {
+
+	}
+
+}

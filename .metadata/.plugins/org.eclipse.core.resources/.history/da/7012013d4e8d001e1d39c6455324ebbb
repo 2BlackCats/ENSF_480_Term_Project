@@ -1,0 +1,43 @@
+package flight.GUI;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JToggleButton;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+public class FlightAttendent extends JPanel{
+
+	private JTable table;
+	private JTable table_1;
+
+	/**
+	 * Create the application.
+	 */
+	public FlightAttendent() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		
+		JSplitPane splitPane = new JSplitPane();
+		add(splitPane, BorderLayout.CENTER);
+		
+		//Table for Flights
+		table = new JTable();
+		splitPane.setLeftComponent(table);
+		
+		//Table for seats
+		table_1 = new JTable();
+		splitPane.setRightComponent(table_1);
+	
+	}
+
+}

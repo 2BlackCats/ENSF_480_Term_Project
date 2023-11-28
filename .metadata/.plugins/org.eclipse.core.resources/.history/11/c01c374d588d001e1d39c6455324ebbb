@@ -1,0 +1,28 @@
+package flight.GUI;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JToggleButton;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+public class Guest extends JPanel{
+	
+	private JFrame main; 
+	private JTable table;
+	private JTable table_1;
+	
+
+	/**
+	 * Create the application.
+	 */
+	public Guest(JFrame main) {
+		this.main = main;
+	}
+
+}
